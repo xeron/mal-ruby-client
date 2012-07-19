@@ -1,11 +1,11 @@
 class MyAnimeList
 
-  # Allows authenticating user to search anime/manga titles.
+  # Allows the authenticating user to search anime/manga titles.
   # http://myanimelist.net/api/anime|manga/search.xml?q=full+metal
   # === Returns
   # Array:: Hashes of found titles
   def search(namespace, title)
-    if xml = do_request("#{namespace}/search.xml?q=#{title}")
+    if xml = do_request("#{namespace}/search.xml?q=#{title}", "GET")
       items = parse_xml(xml)
       return reformat_items(items)
     else
