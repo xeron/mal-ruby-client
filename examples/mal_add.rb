@@ -31,19 +31,19 @@ data["status"] = 1
 
 case result.size
 when 0
-  puts "Nothing found."
+  puts "#{ARGV[2]} not found."
 when 1
   id = mal.add("animelist", result[0][:id], data)
-  puts id
+  puts "#{result[0][:title]} #{id}"
 else
   puts "Too much results. Select one."
-  result.each_with_index { |res, i| puts "#{i + 1}) #{res[:title]}" }
+  result.each_with_index { |res, i| puts "#{i + 1}) #{res[:title]} (#{res[:start_date].year} - #{res[:end_date].year}, #{res[:type]}, #{res[:episodes]})" }
   choice = $stdin.gets.chomp
   if choice
     choice = choice.to_i
     if choice > 0 && choice <= result.size
       id = mal.add("animelist", result[choice - 1][:id], data)
-      puts id
+      puts "#{result[choice - 1][:title]} #{id}"
     else
       puts "Wrong input. Sorry."
     end
