@@ -3,7 +3,7 @@
 
 require 'pp'
 
-$:.unshift(File.dirname(__FILE__) + '/../lib')
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'myanimelist'
 
 mal = MyAnimeList.new(ARGV[0], ARGV[1])
